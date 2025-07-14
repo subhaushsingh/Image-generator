@@ -5,6 +5,8 @@ import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
 
+
+
 const CreatePost = () => {
   const navigate = useNavigate();
 
@@ -28,12 +30,12 @@ const CreatePost = () => {
     if(form.prompt){
       try {
         setGeneratingImg(true);
-        const res = await axios.post("http://localhost:3000/api/v1/ai",
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/ai`,
           {
             prompt : form.prompt,
           },
           {
-            Headers:{
+            headers:{
               'Content-Type': "application/json",
             }
           }
@@ -59,7 +61,7 @@ const CreatePost = () => {
     if (form.prompt && form.photo) {
       setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/post",
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/post`,
           form
         ,{
           headers:{

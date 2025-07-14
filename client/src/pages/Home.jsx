@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { Loader,FormField,Card } from '../components'
 import axios from 'axios';
-import { use } from 'react';
+
 
 const RenderCards = ({data,title})=>{
   if(data?.length>0){
@@ -23,7 +23,7 @@ const fetchPosts = async () => {
   setLoading(true);
 
   try {
-    const res = await axios.get("http://localhost:3000/api/v1/post", {
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/post`, {
       headers: {
         'Content-Type': 'application/json'
       }
